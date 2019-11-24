@@ -16,13 +16,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    avtomati.cpp \
     generator.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    poiskperexod.cpp \
+    poiskput.cpp
 
 HEADERS += \
+    avtomati.h \
     generator.h \
-    mainwindow.h
+    mainwindow.h \
+    poiskperexod.h \
+    poiskput.h
 
 FORMS += \
     mainwindow.ui
