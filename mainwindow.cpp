@@ -47,8 +47,9 @@ void MainWindow::on_pushButton_clicked()
     Obraz = generator.get_robr();
     QString str;
     QString str2;
-
+ui->vivod->addItem("Образцы");
     for (int j=0;j<=r2-1;j++){
+
     for(int i = 0; i <= r1-1;i++) {
        QString st(QChar(Obraz[j][i]));
         str = str+st;
@@ -64,12 +65,13 @@ void MainWindow::on_pushButton_clicked()
             poiskput(alph, avtomvec, Obraz, i);//Поиск входных данных
      }
 
+/*
 
-
-    for (int i = 1; i <= avtomvec.size()-1; ++i) {
+    for (int i = 0; i <= avtomvec.size()-1; ++i) {
             tvec = {};
             //cout << 'p' << i <<' ';
             tvec = avtomvec[i].getPPvec();
+             str="P"+QString::number(i)+" ";
             for (int j = 0; j <= tvec.size()-1; ++j) {
                 QString st(QChar(tvec[j]));
                  str = str+st;
@@ -78,7 +80,7 @@ void MainWindow::on_pushButton_clicked()
             ui->vivod->addItem(str);
             str=str2;
             //cout << endl;
-      }
+      }*/
     // Находим финалы
 for(int j=Obraz.size()-1;j<=0;j--){
     for (int i=avtomvec.size()-1;i<=0;i--){
@@ -88,17 +90,18 @@ for(int j=Obraz.size()-1;j<=0;j--){
         }
     }
 }
-ui->vivod->addItem("'Переходы'");
+//ui->vivod->addItem("'Переходы'");
 poiskperexod(avtomvec,alph);
 QVector<int> itvec;
 str2.clear();
 str.clear();
 QString st;
-
-for (int i = 1; i <= avtomvec.size()-1; ++i) {
+/*
+for (int i = 0; i <= avtomvec.size()-1; ++i) {
         itvec = {};
         //cout << 'p' << i <<' ';
         itvec = avtomvec[i].getPvec();
+           str="P"+QString::number(i)+" ";
         for (int j = 0; j <= itvec.size()-1; ++j) {
 
             st=QString::number(itvec[j]);
@@ -108,6 +111,46 @@ for (int i = 1; i <= avtomvec.size()-1; ++i) {
         ui->vivod->addItem(str);
         str=str2;
         //cout << endl;
-  }
+  }*/
+QModelIndex index;
+model = new QStandardItemModel(avtomvec.size(),9,this);
+ui->tabl->setModel(model);
+    model->setHeaderData(0,Qt::Horizontal,"P");
+    for(int i=1;i<=alph.size();i++){
+ model->setHeaderData(i,Qt::Horizontal, QChar(alph[i-1]));
+    }
+    for(int i=0;i<model->rowCount();i++){
+ model->setHeaderData(i,Qt::Vertical, i);
+    }
+for(int row=0;row<model->rowCount();row++){
+     tvec = avtomvec[row].getPPvec();
+    for (int j = 0; j <= tvec.size()-1; ++j) {
+        QString st(QChar(tvec[j]));
+         str = str+st;
+
+    }
+    //ui->vivod->addItem(str);
+
+    index=model->index(row,0);
+     model->setData(index, str);
+    str.clear();
+
+    itvec = {};
+    //cout << 'p' << i <<' ';
+    itvec = avtomvec[row].getPvec();
+       //str="P"+QString::number(i)+" ";
+     for(int col=1;col<model->columnCount();col++) {
+
+       // st=;
+       index=model->index(row,col);
+        model->setData(index, QString::number(itvec[col-1]));
+      //  str.clear();
+
+    }
+
+
+
+}
+
 
 }
