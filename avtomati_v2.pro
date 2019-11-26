@@ -20,6 +20,7 @@ SOURCES += \
     generator.cpp \
     main.cpp \
     mainwindow.cpp \
+    metod_tabl_per.cpp \
     poiskperexod.cpp \
     poiskput.cpp
 
@@ -27,6 +28,7 @@ HEADERS += \
     avtomati.h \
     generator.h \
     mainwindow.h \
+    metod_tabl_per.h \
     poiskperexod.h \
     poiskput.h
 

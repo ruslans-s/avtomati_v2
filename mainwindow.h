@@ -15,11 +15,11 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    void textoutput(QString);
 private slots:
     void on_pushButton_clicked();
 
-private:
+    private:
     Ui::MainWindow *ui;
     QStandardItemModel* model;
 };

@@ -8,6 +8,7 @@
 #include "avtomati.h"
 #include "poiskput.h"
 #include "poiskperexod.h"
+#include "metod_tabl_per.h"
 using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -31,6 +32,12 @@ string tostring(int n)
     return buf;
 }
 
+
+void MainWindow::textoutput(QString otxt){
+ui->vivod->addItem(otxt);
+}
+
+
 void MainWindow::on_pushButton_clicked()
 {
     ui->vivod->clear();
@@ -40,7 +47,7 @@ void MainWindow::on_pushButton_clicked()
    // r2=3;//Кол-во образцов
     r2=ui->lineEdit->text().toInt();
     r1=ui->lineEdit_2->text().toInt();
-    ui->label->setText("Кнопка Нажата");
+   // ui->label->setText("Кнопка Нажата");
     QVector<char> alph = {'s','a','d','i','k','o','v','r'};
     QVector<QVector<char>> Obraz;
     generator generator(alph,r2,r1);
@@ -82,13 +89,21 @@ ui->vivod->addItem("Образцы");
             //cout << endl;
       }*/
     // Находим финалы
-for(int j=Obraz.size()-1;j<=0;j--){
-    for (int i=avtomvec.size()-1;i<=0;i--){
+for(int j=0;j<=Obraz.size()-1;j++){
+    for (int i=0;i<=avtomvec.size()-1;i++){
         if (Obraz[j]==avtomvec[i].getPPvec()) {
             avtomvec[i].setfinal();
+          //   ui->vivod->addItem("Final");
             break;
         }
     }
+}
+for(int i=0;i<=avtomvec.size()-1;i++){
+    if (avtomvec[i].getfinal()==true){
+       ui->vivod->addItem(QString::number(i));
+       ui->vivod->addItem("Final");
+    }
+
 }
 //ui->vivod->addItem("'Переходы'");
 poiskperexod(avtomvec,alph);
@@ -151,6 +166,15 @@ for(int row=0;row<model->rowCount();row++){
 
 
 }
+QVector<QString> text3;
 
+QVector<char> texto = {'a','i','v','k','a','d','i','s','a','d','v','k'};
+
+
+metod_tabl_per(alph, avtomvec, Obraz,texto,text3);
+ui->vivod->addItem(QString::number(text3.size()));
+for(int i=0;i<=text3.size()-1;i++){
+ui->vivod->addItem(text3[i]);
+}
 
 }

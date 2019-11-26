@@ -22,7 +22,7 @@ poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<char> alphab)
                 for (int rf5 = 0; rf5 <= avtomvec.size() - 1; ++rf5) {
                     itfin2 = avtomvec[rf5].getfinal();
                     if((itfin1==true )&&( itfin2==true)){
-                        continue;
+                      //  continue;
                     }
                     tvec3 = tvec2;
 
