@@ -2,13 +2,16 @@
 #include "ui_mainwindow.h"
 #include "generator.h"
 #include<QVector>
-#include <string>
+#include <QString>
 #include <sstream>
 #include <iostream>
 #include "avtomati.h"
 #include "poiskput.h"
 #include "poiskperexod.h"
 #include "metod_tabl_per.h"
+#include <QFile>
+#include "nastorika_text.h"
+#include <algorithm>
 using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -40,20 +43,44 @@ ui->vivod->addItem(otxt);
 
 void MainWindow::on_pushButton_clicked()
 {
+
     ui->vivod->clear();
     QVector<avtomati> avtomvec;
-    int r1,r2;
+    avtomvec.clear();
+    int r1,r2,r3;
    //  r1=4;//Длина образцов
    // r2=3;//Кол-во образцов
     r2=ui->lineEdit->text().toInt();
     r1=ui->lineEdit_2->text().toInt();
+    r3=ui->lineEdit_3->text().toInt();
+
    // ui->label->setText("Кнопка Нажата");
+   // QVector<char> texto = {'a','i','v','k','a','d','i','s','a','d','v','k'};
+
     QVector<char> alph = {'s','a','d','i','k','o','v','r'};
     QVector<QVector<char>> Obraz;
-    generator generator(alph,r2,r1);
+    QVector<char> texto ;
+     generator generator(alph,r2,r1,r3);
+ if (ui->randomtext->isChecked()){
+    texto=generator.getText();
+ }
+ //Когда вводим текст
+ if (ui->enteText->isChecked()){
+    QString tempText=ui->lineEdit_4->text();
+   for (int i=0;i<=tempText.size()-1;i++){
+
+       if (std::find(std::begin(alph), std::end(alph), tempText[i]) != std::end(alph)){
+           texto.resize(texto.size()+1);
+//         texto[texto.size()-1]=tempText[i];
+       }else{
+
+
+   }
+ }}
     Obraz = generator.get_robr();
-    QString str;
-    QString str2;
+   texto=generator.getText();
+    QString str={};
+    QString str2={};
 ui->vivod->addItem("Образцы");
     for (int j=0;j<=r2-1;j++){
 
@@ -64,7 +91,7 @@ ui->vivod->addItem("Образцы");
      ui->vivod->addItem(str);
      str=str2;
     }
-    QVector<char> tvec;
+    QVector<char> tvec={};
     avtomvec.resize(avtomvec.size() + 1);
     tvec={' '};
     avtomvec[0].setPVec(tvec);
@@ -98,19 +125,31 @@ for(int j=0;j<=Obraz.size()-1;j++){
         }
     }
 }
+// Номера образцов
+for(int j=0;j<=Obraz.size()-1;j++){
+    if(avtomvec[j].getfinal()==true){
+for (int i=0; i<=Obraz.size()-1;++i){
+       if(avtomvec[j].getPPvec()==Obraz[i]){
+avtomvec[i].setnumberobr(i);
+break;
+       }
+}
+    }
+}
+/*
 for(int i=0;i<=avtomvec.size()-1;i++){
     if (avtomvec[i].getfinal()==true){
        ui->vivod->addItem(QString::number(i));
        ui->vivod->addItem("Final");
     }
 
-}
+}*/
 //ui->vivod->addItem("'Переходы'");
 poiskperexod(avtomvec,alph);
-QVector<int> itvec;
+QVector<int> itvec={};
 str2.clear();
 str.clear();
-QString st;
+QString st={};
 /*
 for (int i = 0; i <= avtomvec.size()-1; ++i) {
         itvec = {};
@@ -166,15 +205,24 @@ for(int row=0;row<model->rowCount();row++){
 
 
 }
-QVector<QString> text3;
+str.clear();
 
-QVector<char> texto = {'a','i','v','k','a','d','i','s','a','d','v','k'};
+        for (int j = 0; j <= texto.size()-1; ++j) {
+            st=QChar(texto[j]);
+             str =str+ QString::number(j)+st+" ";
+        }
+        ui->vivod->addItem(str);
 
 
+QVector<QString> text3={};
 metod_tabl_per(alph, avtomvec, Obraz,texto,text3);
-ui->vivod->addItem(QString::number(text3.size()));
+//ui->vivod->addItem(QString::number(text3.size()));
 for(int i=0;i<=text3.size()-1;i++){
 ui->vivod->addItem(text3[i]);
 }
 
 }
+
+
+
+

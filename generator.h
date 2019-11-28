@@ -9,10 +9,12 @@ protected:
     QVector<char> Talph;
     int numberobr;
     int sizeobr;
+    int sizetext;
 
 public:
-     generator (QVector<char> , int ,int );
+     generator (QVector<char> , int ,int,int );
      QVector<QVector<char>> get_robr();
+     QVector<char> getText();
 };
 
 #endif // GENERATOR_H

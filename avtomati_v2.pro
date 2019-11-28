@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     metod_tabl_per.cpp \
+    nastorika_text.cpp \
     poiskperexod.cpp \
     poiskput.cpp
 
@@ -29,11 +30,13 @@ HEADERS += \
     generator.h \
     mainwindow.h \
     metod_tabl_per.h \
+    nastorika_text.h \
     poiskperexod.h \
     poiskput.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    nastorika_text.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
