@@ -12,7 +12,7 @@ protected:
     QVector<QVector<char>> Fobraz;
     QVector<QString> text0;
 public:
-    metod_tabl_per(QVector <char>, QVector <avtomati>, QVector<QVector<char>>,QVector <char>,QVector<QString>& );
+    metod_tabl_per(QVector <char>, QVector <avtomati>, QVector<QVector<char>>,QVector <char>,QVector<QString>&, QVector<int>& );
 //    int getpoisknumber(char,QVector <char>);
 //    void setstr(QString);
  //   QVector<QString> gettstr();

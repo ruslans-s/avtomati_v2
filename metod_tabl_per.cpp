@@ -18,7 +18,7 @@ QVector<QString>  metod_tabl_per::gettstr(){
       return vectxt;
 }*/
 
-metod_tabl_per::metod_tabl_per(QVector <char> Falphab, QVector <avtomati> Favtomvec, QVector<QVector<char>> Fobraz,QVector <char> FText,QVector<QString>& text0)
+metod_tabl_per::metod_tabl_per(QVector <char> Falphab, QVector <avtomati> Favtomvec, QVector<QVector<char>> Fobraz,QVector <char> FText,QVector<QString>& text0, QVector<int>& numberfordel)
 {
     QVector<int> tempvec1={};
     QVector<char> tempvec2;
@@ -30,6 +30,7 @@ metod_tabl_per::metod_tabl_per(QVector <char> Falphab, QVector <avtomati> Favtom
     int i=0;
     int i2=0;
     int k;
+    int rf5;
     bool similar;
     while (i<=FText.size()-1){
             //numbersim = getpoisknumber(FText[i],Falphab);
@@ -45,7 +46,7 @@ metod_tabl_per::metod_tabl_per(QVector <char> Falphab, QVector <avtomati> Favtom
             tempvec2=Favtomvec[currentp].getPPvec();
             tempvec1=Favtomvec[currentp].getPvec();
             if (Favtomvec[currentp].getfinal()==true){
-                while(k<tempvec2.size()-1){
+                while(k<=tempvec2.size()-1){
                 if(tempvec2[tempvec2.size()-1-k]==FText[i-1-k]) {
                 similar=true;
                   k++;
@@ -64,6 +65,14 @@ metod_tabl_per::metod_tabl_per(QVector <char> Falphab, QVector <avtomati> Favtom
               text1=QString::number(i-1)+" Вхождение P"+QString::number(Favtomvec[currentp].getnumberobr())+" Со сдвигом "+ QString::number(s);
               text0.resize(text0.size()+1);
               text0[text0.size()-1]=text1;
+              rf5=i-1-1;
+              for(int rf4=0;rf4<=1;rf4++){
+                numberfordel.push_back(rf5);
+                rf5++;
+              }
+
+
+
 
             } } else {
 

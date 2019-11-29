@@ -215,12 +215,28 @@ str.clear();
 
 
 QVector<QString> text3={};
-metod_tabl_per(alph, avtomvec, Obraz,texto,text3);
+QVector<int> numberfodel;
+metod_tabl_per(alph, avtomvec, Obraz,texto,text3,numberfodel);
 //ui->vivod->addItem(QString::number(text3.size()));
 for(int i=0;i<=text3.size()-1;i++){
 ui->vivod->addItem(text3[i]);
 }
 
+for(int i=0;i<=numberfodel.size()-1;i++){
+ui->vivod->addItem(QString::number(numberfodel[i]));
+}
+int rf6,pos,tpos;
+for(int i=0;i<numberfodel.size()-1;i++){
+    pos=numberfodel[i]-i;
+texto.erase(texto.begin()+pos);
+rf6++;
+}
+str.clear();
+for (int j = 0; j <= texto.size()-1; ++j) {
+    st=QChar(texto[j]);
+     str =str+ QString::number(j)+st+" ";
+}
+ui->vivod->addItem(str);
 }
 
 
