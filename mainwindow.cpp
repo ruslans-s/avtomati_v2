@@ -12,6 +12,8 @@
 #include <QFile>
 #include "nastorika_text.h"
 #include <algorithm>
+#include <QChar>
+#include <QErrorMessage>
 using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -40,58 +42,81 @@ void MainWindow::textoutput(QString otxt){
 ui->vivod->addItem(otxt);
 }
 
+//Ручной ввод образцов
+void MainWindow::on_pushButton_2_clicked()
+{
+ QString temptext;
+ QVector<QChar> tempvecchar;
+ temptext=ui->lineEdit_5->text();
+ for(int i=0;i<=temptext.size()-1;i++){
+     if (std::find(std::begin(alph), std::end(alph), temptext[i]) != std::end(alph)){
+       tempvecchar.push_back(temptext[i]);
+     }else{
+(new QErrorMessage(this))->showMessage("В образце есть недопустимые символы");
+         return ;
+ }
+    tempvecchar.push_back(temptext[i]);
+ }
+ Obraz.push_back(tempvecchar);
+ ui->lineEdit_5->clear();
+}
+
+
+void MainWindow::vivod(QString text){
+ui->vivod->addItem(text);
+}
 
 void MainWindow::on_pushButton_clicked()
 {
 
     ui->vivod->clear();
+    ui->text_conclusion->clear();
     QVector<avtomati> avtomvec;
     avtomvec.clear();
     int r1,r2,r3;
-   //  r1=4;//Длина образцов
-   // r2=3;//Кол-во образцов
+    //Инициализация параметров
     r2=ui->lineEdit->text().toInt();
     r1=ui->lineEdit_2->text().toInt();
     r3=ui->lineEdit_3->text().toInt();
+    QVector<QChar> texto ;
+      QVector<QChar> texForSave ;
+    generator generator(alph,r2,r1,r3);
 
-   // ui->label->setText("Кнопка Нажата");
-   // QVector<char> texto = {'a','i','v','k','a','d','i','s','a','d','v','k'};
-
-    QVector<char> alph = {'s','a','d','i','k','o','v','r'};
-    QVector<QVector<char>> Obraz;
-    QVector<char> texto ;
-     generator generator(alph,r2,r1,r3);
  if (ui->randomtext->isChecked()){
+     //Генерация текста
     texto=generator.getText();
  }
- //Когда вводим текст
+    //Ручной ввод текста
  if (ui->enteText->isChecked()){
-    QString tempText=ui->lineEdit_4->text();
+   QString tempText=ui->lineEdit_4->text().toLocal8Bit();
    for (int i=0;i<=tempText.size()-1;i++){
-
        if (std::find(std::begin(alph), std::end(alph), tempText[i]) != std::end(alph)){
-           texto.resize(texto.size()+1);
-//         texto[texto.size()-1]=tempText[i];
+            texto.push_back(tempText[i]);
        }else{
-
-
+            (new QErrorMessage(this))->showMessage("В тексте есть недопустимые символы");
+            return ;
    }
  }}
-    Obraz = generator.get_robr();
-   texto=generator.getText();
+ texForSave=texto;
+if(ui->radioButton->isChecked()) texto=texForSave;
+    //Создание случайных образцов с заданныит параметрами
+ if(ui->randomSample->isChecked()==true){
+   Obraz = generator.get_robr();
+}
+
+
     QString str={};
     QString str2={};
-ui->vivod->addItem("Образцы");
+    //Вывод образцов
+    ui->vivod->addItem("Образцы");
     for (int j=0;j<=r2-1;j++){
-
     for(int i = 0; i <= r1-1;i++) {
-       QString st(QChar(Obraz[j][i]));
-        str = str+st;
+        str = str+Obraz[j][i];
     }
      ui->vivod->addItem(str);
      str=str2;
     }
-    QVector<char> tvec={};
+    QVector<QChar> tvec={};
     avtomvec.resize(avtomvec.size() + 1);
     tvec={' '};
     avtomvec[0].setPVec(tvec);
@@ -99,22 +124,6 @@ ui->vivod->addItem("Образцы");
             poiskput(alph, avtomvec, Obraz, i);//Поиск входных данных
      }
 
-/*
-
-    for (int i = 0; i <= avtomvec.size()-1; ++i) {
-            tvec = {};
-            //cout << 'p' << i <<' ';
-            tvec = avtomvec[i].getPPvec();
-             str="P"+QString::number(i)+" ";
-            for (int j = 0; j <= tvec.size()-1; ++j) {
-                QString st(QChar(tvec[j]));
-                 str = str+st;
-
-            }
-            ui->vivod->addItem(str);
-            str=str2;
-            //cout << endl;
-      }*/
     // Находим финалы
 for(int j=0;j<=Obraz.size()-1;j++){
     for (int i=0;i<=avtomvec.size()-1;i++){
@@ -125,6 +134,7 @@ for(int j=0;j<=Obraz.size()-1;j++){
         }
     }
 }
+
 // Номера образцов
 for(int j=0;j<=Obraz.size()-1;j++){
     if(avtomvec[j].getfinal()==true){
@@ -136,36 +146,15 @@ break;
 }
     }
 }
-/*
-for(int i=0;i<=avtomvec.size()-1;i++){
-    if (avtomvec[i].getfinal()==true){
-       ui->vivod->addItem(QString::number(i));
-       ui->vivod->addItem("Final");
-    }
 
-}*/
-//ui->vivod->addItem("'Переходы'");
+
 poiskperexod(avtomvec,alph);
 QVector<int> itvec={};
 str2.clear();
 str.clear();
 QString st={};
-/*
-for (int i = 0; i <= avtomvec.size()-1; ++i) {
-        itvec = {};
-        //cout << 'p' << i <<' ';
-        itvec = avtomvec[i].getPvec();
-           str="P"+QString::number(i)+" ";
-        for (int j = 0; j <= itvec.size()-1; ++j) {
 
-            st=QString::number(itvec[j]);
-             str = str+st+" ";
 
-        }
-        ui->vivod->addItem(str);
-        str=str2;
-        //cout << endl;
-  }*/
 QModelIndex index;
 model = new QStandardItemModel(avtomvec.size(),9,this);
 ui->tabl->setModel(model);
@@ -179,26 +168,24 @@ ui->tabl->setModel(model);
 for(int row=0;row<model->rowCount();row++){
      tvec = avtomvec[row].getPPvec();
     for (int j = 0; j <= tvec.size()-1; ++j) {
-        QString st(QChar(tvec[j]));
-         str = str+st;
+
+         str = str+tvec[j];
 
     }
-    //ui->vivod->addItem(str);
-
     index=model->index(row,0);
      model->setData(index, str);
     str.clear();
 
     itvec = {};
-    //cout << 'p' << i <<' ';
+
     itvec = avtomvec[row].getPvec();
-       //str="P"+QString::number(i)+" ";
+
      for(int col=1;col<model->columnCount();col++) {
 
-       // st=;
+
        index=model->index(row,col);
         model->setData(index, QString::number(itvec[col-1]));
-      //  str.clear();
+
 
     }
 
@@ -211,34 +198,32 @@ str.clear();
             st=QChar(texto[j]);
              str =str+ QString::number(j)+st+" ";
         }
-        ui->vivod->addItem(str);
+        ui->text_conclusion->addItem(str);
 
 
 QVector<QString> text3={};
 QVector<int> numberfodel;
 metod_tabl_per(alph, avtomvec, Obraz,texto,text3,numberfodel);
-//ui->vivod->addItem(QString::number(text3.size()));
+
 for(int i=0;i<=text3.size()-1;i++){
 ui->vivod->addItem(text3[i]);
 }
-
+/*
 for(int i=0;i<=numberfodel.size()-1;i++){
 ui->vivod->addItem(QString::number(numberfodel[i]));
-}
-int rf6,pos,tpos;
+}*/ //Вывод номеров удаляемых элементов
+int pos;
 for(int i=0;i<numberfodel.size()-1;i++){
     pos=numberfodel[i]-i;
 texto.erase(texto.begin()+pos);
-rf6++;
 }
 str.clear();
 for (int j = 0; j <= texto.size()-1; ++j) {
     st=QChar(texto[j]);
      str =str+ QString::number(j)+st+" ";
 }
-ui->vivod->addItem(str);
+ui->text_conclusion->addItem(str);
 }
-
 
 
 

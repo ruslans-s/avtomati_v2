@@ -1,10 +1,10 @@
 #include "poiskput.h"
 #include "avtomati.h"
-poiskput::poiskput(QVector <char> Falphab, QVector <avtomati>& Favtomvec, QVector<QVector<char>> Fobraz, int r2)
+poiskput::poiskput(QVector <QChar> Falphab, QVector <avtomati>& Favtomvec, QVector<QVector<QChar>> Fobraz, int r2)
 {
         int r9 = 0;
         //cout << "Vxod v Poisk" << endl; //Debug info
-        QVector<char> tempvec;
+        QVector<QChar> tempvec;
         //int r1 = 0;
         for (int i = 0; i <= Falphab.size() - 1; ++i) {
             for (int j = 0; j <= Fobraz.size() - 1; ++j) {

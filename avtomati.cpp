@@ -7,7 +7,7 @@ avtomati::avtomati()
 void avtomati::setSizeVec(int size) {
         perex.resize(size);
     }
-void avtomati::setPVec(QVector<char> tperex) {
+void avtomati::setPVec(QVector<QChar> tperex) {
         //pperex.resize(size);
         pperex = tperex;
     }
@@ -17,7 +17,7 @@ void avtomati::setPer(QVector<int> nper) {
 QVector<int> avtomati::getPvec() {
         return perex;
     }
-QVector<char> avtomati::getPPvec() {
+QVector<QChar> avtomati::getPPvec() {
         return pperex;
     }
 

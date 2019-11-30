@@ -16,6 +16,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void textoutput(QString);
+    void vivod(QString );
 private slots:
     void on_pushButton_clicked();
 
@@ -26,6 +27,8 @@ private slots:
     void on_pushButton_2_customContextMenuRequested(const QPoint &pos);
 
 private:
+     QVector<QVector<QChar>> Obraz;
+      QVector<QChar> alph = {'s','a','d','i','k','o','v','r'};
     Ui::MainWindow *ui;
     QStandardItemModel* model;
 };

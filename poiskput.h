@@ -6,12 +6,12 @@
 class poiskput
 {
 protected:
-    QVector <char> Falphab;
+    QVector <QChar> Falphab;
     QVector <avtomati> Favtomvec;
-    QVector<QVector<char>> Fobraz;
+    QVector<QVector<QChar>> Fobraz;
     int r2;
 public:
-    poiskput(QVector <char>, QVector <avtomati>&, QVector<QVector<char>> ,int);
+    poiskput(QVector <QChar>, QVector <avtomati>&, QVector<QVector<QChar>> ,int);
 };
 
 #endif // POISKPUT_H

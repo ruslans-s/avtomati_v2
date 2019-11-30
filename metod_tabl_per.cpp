@@ -18,10 +18,10 @@ QVector<QString>  metod_tabl_per::gettstr(){
       return vectxt;
 }*/
 
-metod_tabl_per::metod_tabl_per(QVector <char> Falphab, QVector <avtomati> Favtomvec, QVector<QVector<char>> Fobraz,QVector <char> FText,QVector<QString>& text0, QVector<int>& numberfordel)
+metod_tabl_per::metod_tabl_per(QVector <QChar> Falphab, QVector <avtomati> Favtomvec, QVector<QVector<QChar>> Fobraz,QVector <QChar> FText,QVector<QString>& text0, QVector<int>& numberfordel)
 {
     QVector<int> tempvec1={};
-    QVector<char> tempvec2;
+    QVector<QChar> tempvec2;
     int currentp=0;
     int numbersim=0;
     int s=0;

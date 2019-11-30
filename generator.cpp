@@ -1,13 +1,13 @@
 #include "generator.h"
 #include<QVector>
 
-generator :: generator (QVector<char> newTalph, int newnumber,int newsizeobr,int newsizetext){
+generator :: generator (QVector<QChar> newTalph, int newnumber,int newsizeobr,int newsizetext){
 Talph=newTalph;
 numberobr=newnumber;
 sizeobr=newsizeobr;
 sizetext=newsizetext;
 }
-QVector<QVector<char>> generator :: get_robr()
+QVector<QVector<QChar>> generator :: get_robr()
     {
          GObraz.resize(numberobr);
      for(int i=0;i<=numberobr-1;i++){
@@ -19,9 +19,9 @@ QVector<QVector<char>> generator :: get_robr()
      return GObraz;
      }
 
-QVector<char> generator::getText()
+QVector<QChar> generator::getText()
 {
-    QVector<char> textobr={};
+    QVector<QChar> textobr={};
     for(int i=0;i<=sizetext-1;i++)
     {
       textobr.push_back(Talph[rand() % 8]);

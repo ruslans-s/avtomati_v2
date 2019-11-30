@@ -5,16 +5,16 @@
 class generator
 {
 protected:
-    QVector<QVector<char>> GObraz;
-    QVector<char> Talph;
+    QVector<QVector<QChar>> GObraz;
+    QVector<QChar> Talph;
     int numberobr;
     int sizeobr;
     int sizetext;
 
 public:
-     generator (QVector<char> , int ,int,int );
-     QVector<QVector<char>> get_robr();
-     QVector<char> getText();
+     generator (QVector<QChar> , int ,int,int );
+     QVector<QVector<QChar>> get_robr();
+     QVector<QChar> getText();
 };
 
 #endif // GENERATOR_H

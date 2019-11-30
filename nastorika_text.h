@@ -15,6 +15,9 @@ public:
     explicit nastorika_text(QWidget *parent = nullptr);
     ~nastorika_text();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::nastorika_text *ui;
 };

@@ -1,7 +1,7 @@
 #include "poiskperexod.h"
 #include<QVector>
 #include <algorithm>
-poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<char> alphab)
+poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<QChar> alphab)
 {
     Tintvec.resize(alphab.size());
     QVector<int> TintvecN = Tintvec;

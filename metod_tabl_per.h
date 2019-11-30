@@ -7,12 +7,12 @@ class metod_tabl_per
 {
 protected:
    // QVector<QString> vectxt;
-    QVector <char> Falphab;
+    QVector <QChar> Falphab;
     QVector <avtomati> Favtomvec;
-    QVector<QVector<char>> Fobraz;
+    QVector<QVector<QChar>> Fobraz;
     QVector<QString> text0;
 public:
-    metod_tabl_per(QVector <char>, QVector <avtomati>, QVector<QVector<char>>,QVector <char>,QVector<QString>&, QVector<int>& );
+    metod_tabl_per(QVector <QChar>, QVector <avtomati>, QVector<QVector<QChar>>,QVector <QChar>,QVector<QString>&, QVector<int>& );
 //    int getpoisknumber(char,QVector <char>);
 //    void setstr(QString);
  //   QVector<QString> gettstr();
