@@ -60,7 +60,6 @@ poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<QChar> alphab)
                             }
                         }
 
-
                         }
 
                     if (max >> oldmax) {

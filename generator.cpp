@@ -10,11 +10,21 @@ sizetext=newsizetext;
 QVector<QVector<QChar>> generator :: get_robr()
     {
          GObraz.resize(numberobr);
-     for(int i=0;i<=numberobr-1;i++){
+         int i=0;
+         bool genSuccessful=false;
+     while(i<=numberobr-1){
          GObraz[i].resize(sizeobr);
          for(int j=0;j<=sizeobr-1;j++){
              GObraz[i][j]=Talph[rand() % 8];
          }
+         for(int rfi=0;rfi<=GObraz.size()-1;rfi++){
+            if(GObraz[i]==GObraz[rfi] && i!=rfi){
+                genSuccessful=false;
+                break;
+            }
+            if(rfi==GObraz.size()-1) genSuccessful=true;
+         }
+     if(genSuccessful) i++;
      }
      return GObraz;
      }
