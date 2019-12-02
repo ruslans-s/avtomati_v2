@@ -28,7 +28,7 @@ private slots:
 
 private:
      QVector<QVector<QChar>> Obraz;
-      QVector<QChar> alph = {'s','a','d','i','k','o','v','r'};
+      QVector<QChar> alph = {'p','i','n','a','e','v','b','o'};
     Ui::MainWindow *ui;
     QStandardItemModel* model;
 };

@@ -33,7 +33,7 @@
       <x>280</x>
       <y>40</y>
       <width>321</width>
-      <height>401</height>
+      <height>511</height>
      </rect>
     </property>
     <property name="font">
@@ -174,7 +174,7 @@
       <x>620</x>
       <y>40</y>
       <width>311</width>
-      <height>501</height>
+      <height>511</height>
      </rect>
     </property>
     <property name="font">
@@ -284,16 +284,6 @@
       </item>
      </layout>
     </widget>
-   </widget>
-   <widget class="QListWidget" name="text_conclusion">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>451</y>
-      <width>321</width>
-      <height>91</height>
-     </rect>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

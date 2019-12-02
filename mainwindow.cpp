@@ -70,7 +70,7 @@ void MainWindow::on_pushButton_clicked()
 {
 
     ui->vivod->clear();
-    ui->text_conclusion->clear();
+   // ui->text_conclusion->clear();
     QVector<avtomati> avtomvec;
     avtomvec.clear();
     int r1,r2,r3;
@@ -198,7 +198,7 @@ str.clear();
             st=QChar(texto[j]);
              str =str+ QString::number(j)+st+" ";
         }
-        ui->text_conclusion->addItem(str);
+        ui->vivod->addItem(str);
 
 
 QVector<QString> text3={};
@@ -212,6 +212,7 @@ ui->vivod->addItem(text3[i]);
 for(int i=0;i<=numberfodel.size()-1;i++){
 ui->vivod->addItem(QString::number(numberfodel[i]));
 }*/ //Вывод номеров удаляемых элементов
+/*
 int pos;
 for(int i=0;i<numberfodel.size()-1;i++){
     pos=numberfodel[i]-i;
@@ -222,7 +223,7 @@ for (int j = 0; j <= texto.size()-1; ++j) {
     st=QChar(texto[j]);
      str =str+ QString::number(j)+st+" ";
 }
-ui->text_conclusion->addItem(str);
+ui->text_conclusion->addItem(str);*/
 }
 
 
