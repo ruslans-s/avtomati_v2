@@ -11,9 +11,7 @@ poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<QChar> alphab)
 
             itfin1 = avtomvec[rf3].getfinal();
             tvec5 = avtomvec[rf3].getPPvec();
-           if(rf3==0){
-                //tvec5.clear();
-            }
+
 
             for (int rf4 = 0; rf4 <= alphab.size() - 1; rf4++) {
                 tvec2 = tvec5;
@@ -25,7 +23,6 @@ poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<QChar> alphab)
                       //  continue;
                     }
                     tvec3 = tvec2;
-
                     tvec4 = avtomvec[rf5].getPPvec();
 
 
@@ -55,7 +52,7 @@ poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<QChar> alphab)
                             } else {
                              tvec3.pop_front();
                              tvec4.pop_back();
-                            //break;
+                            break;
 
                             }
                         }
