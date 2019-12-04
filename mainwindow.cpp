@@ -124,7 +124,7 @@ if(ui->radioButton->isChecked()) texto=texForSave;
             poiskput(alph, avtomvec, Obraz, i);//Поиск входных данных
      }
 
-    // Находим финалы
+    // Нахохождение всех финальны состояний
 for(int j=0;j<=Obraz.size()-1;j++){
     for (int i=0;i<=avtomvec.size()-1;i++){
         if (Obraz[j]==avtomvec[i].getPPvec()) {
@@ -135,7 +135,7 @@ for(int j=0;j<=Obraz.size()-1;j++){
     }
 }
 
-// Номера образцов
+// Запись номеров образцов в состояния
 for(int j=0;j<=Obraz.size()-1;j++){
     if(avtomvec[j].getfinal()==true){
 for (int i=0; i<=Obraz.size()-1;++i){
@@ -148,13 +148,13 @@ break;
 }
 
 
-poiskperexod(avtomvec,alph);
+poiskperexod(avtomvec,alph);//Поиск переходов
 QVector<int> itvec={};
 str2.clear();
 str.clear();
 QString st={};
 
-
+//Вывод таблицы переходов
 QModelIndex index;
 model = new QStandardItemModel(avtomvec.size(),9,this);
 ui->tabl->setModel(model);
@@ -203,15 +203,12 @@ str.clear();
 
 QVector<QString> text3={};
 QVector<int> numberfodel;
-metod_tabl_per(alph, avtomvec, Obraz,texto,text3,numberfodel);
+
+metod_tabl_per(alph, avtomvec, Obraz,texto,text3,numberfodel);//Применение текста к автомату
 
 for(int i=0;i<=text3.size()-1;i++){
 ui->vivod->addItem(text3[i]);
 }
-/*
-for(int i=0;i<=numberfodel.size()-1;i++){
-ui->vivod->addItem(QString::number(numberfodel[i]));
-}*/ //Вывод номеров удаляемых элементов
 int pos;
 for(int i=0;i<numberfodel.size()-1;i++){
     pos=numberfodel[i]-i;

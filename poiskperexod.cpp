@@ -15,6 +15,7 @@ poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<QChar> alphab)
 
             for (int rf4 = 0; rf4 <= alphab.size() - 1; rf4++) {
                 tvec2 = tvec5;
+                //Добавление в конец образца нового символа
                 tvec2.push_back(alphab[rf4]);
                 oldmax = 0;
                 for (int rf5 = 0; rf5 <= avtomvec.size() - 1; ++rf5) {

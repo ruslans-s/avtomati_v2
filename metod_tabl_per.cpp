@@ -1,22 +1,5 @@
 #include "metod_tabl_per.h"
 #include "mainwindow.h"
-/*
-int metod_tabl_per::getpoisknumber(char simvol,QVector <char> Falphab){
-     for (int i=0;i<=Falphab.size()-1;i++){
-            if(simvol==Falphab[i]){
-                return i;
-              //  break;
-            }
-     }
-     return 5;
-}*/
-/*
-void metod_tabl_per::setstr(QString txt){
-      vectxt.push_back(txt);
-}
-QVector<QString>  metod_tabl_per::gettstr(){
-      return vectxt;
-}*/
 
 metod_tabl_per::metod_tabl_per(QVector <QChar> Falphab, QVector <avtomati> Favtomvec, QVector<QVector<QChar>> Fobraz,QVector <QChar> FText,QVector<QString>& text0, QVector<int>& numberfordel)
 {
@@ -27,16 +10,14 @@ metod_tabl_per::metod_tabl_per(QVector <QChar> Falphab, QVector <avtomati> Favto
     int numbersim=0;
     int s=0;
     QString text1={};
-
     int i=0;
     int k;
     int rf5;
     bool similar;
 
     while (i<=FText.size()-1){
-            //numbersim = getpoisknumber(FText[i],Falphab);
             numbersim=0;
-            for (int j=0;j<=Falphab.size()-1;j++){
+            for (int j=0;j<=Falphab.size()-1;j++){ //перекодирование входного символа
                    if(FText[i]==Falphab[j]){
                      numbersim= j;
                      break;
@@ -59,7 +40,7 @@ metod_tabl_per::metod_tabl_per(QVector <QChar> Falphab, QVector <avtomati> Favto
 
                 }
             if(similar){
-              s=i-(Fobraz[Favtomvec[currentp].getnumberobr()].size());
+              s=i-(Fobraz[Favtomvec[currentp].getnumberobr()].size());//Рассчето перехова
               while(s>Favtomvec.size()-1) s=s-Favtomvec.size();
 
               text1.clear();
@@ -71,6 +52,7 @@ metod_tabl_per::metod_tabl_per(QVector <QChar> Falphab, QVector <avtomati> Favto
                 break;
                 }
               }
+              //Вывод информаций о нахождений образцы
               text1=QString::number(i-1)+" Вхождение P"+QString::number(numperPerexod)+" Со сдвигом "+ QString::number(s);
               text0.resize(text0.size()+1);
               text0[text0.size()-1]=text1;
@@ -84,7 +66,7 @@ metod_tabl_per::metod_tabl_per(QVector <QChar> Falphab, QVector <avtomati> Favto
 
               currentp=s;
             } } else {
-
+                //Переход
                 currentp=tempvec1[numbersim];
   }
             i++;

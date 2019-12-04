@@ -1,12 +1,13 @@
 #include "generator.h"
 #include<QVector>
-
+//Конструктор по-умолчанию
 generator :: generator (QVector<QChar> newTalph, int newnumber,int newsizeobr,int newsizetext){
 Talph=newTalph;
 numberobr=newnumber;
 sizeobr=newsizeobr;
 sizetext=newsizetext;
 }
+//Генерирование образцов
 QVector<QVector<QChar>> generator :: get_robr()
     {
          GObraz.resize(numberobr);
@@ -28,7 +29,7 @@ QVector<QVector<QChar>> generator :: get_robr()
      }
      return GObraz;
      }
-
+//Генерирование текста
 QVector<QChar> generator::getText()
 {
     QVector<QChar> textobr={};
