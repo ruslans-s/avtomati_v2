@@ -24,7 +24,7 @@ poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<QChar> alphab)
                       //  continue;
                     }
                     tvec3 = tvec2;
-                    tvec4 = avtomvec[rf5].getPPvec();
+                    tvec4 = avtomvec[rf5].getPPvec();//Получение входящей последовательности
 
 
                         //
@@ -41,6 +41,7 @@ poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<QChar> alphab)
 
                     cr1 = tvec3[0];
                     cr2 = tvec4[0];
+                    //Сравнение последовательностей
                     if (  (cr1==cr2) ){
 
                         max = 0;
@@ -70,7 +71,7 @@ poiskperexod::poiskperexod(QVector<avtomati>& avtomvec,QVector<QChar> alphab)
 
                     }
                 }
-
+            //Запись переходов
             avtomvec[rf3].setPer(Tintvec);
             Tintvec = TintvecN;
           //  Tintvec.assign();
