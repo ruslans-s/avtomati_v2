@@ -33,8 +33,8 @@ metod_tabl_per::metod_tabl_per(QVector <QChar> Falphab, QVector <avtomati> Favto
     int rf5;
     bool similar;
 
-    while (i<=FText.size()-1){
-            //numbersim = getpoisknumber(FText[i],Falphab);
+    while (i<=FText.size()-1){//перекодирование входного символа
+
             numbersim=0;
             for (int j=0;j<=Falphab.size()-1;j++){
                    if(FText[i]==Falphab[j]){
@@ -70,7 +70,7 @@ metod_tabl_per::metod_tabl_per(QVector <QChar> Falphab, QVector <avtomati> Favto
                 numperPerexod=rfi4;
                 break;
                 }
-              }
+              } //Вывод информаций о нахождений вхождения образца в текст
               text1=QString::number(i-1)+" Вхождение P"+QString::number(numperPerexod)+" Со сдвигом "+ QString::number(s);
               text0.resize(text0.size()+1);
               text0[text0.size()-1]=text1;

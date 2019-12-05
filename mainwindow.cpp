@@ -154,7 +154,7 @@ str2.clear();
 str.clear();
 QString st={};
 
-
+//Вывод данных в таблицу
 QModelIndex index;
 model = new QStandardItemModel(avtomvec.size(),9,this);
 ui->tabl->setModel(model);
@@ -193,7 +193,7 @@ for(int row=0;row<model->rowCount();row++){
 
 }
 str.clear();
-
+//Вывод текста
         for (int j = 0; j <= texto.size()-1; ++j) {
             st=QChar(texto[j]);
              str =str+ QString::number(j)+st+" ";
@@ -203,27 +203,13 @@ str.clear();
 
 QVector<QString> text3={};
 QVector<int> numberfodel;
+//Отправка текста в автомат
 metod_tabl_per(alph, avtomvec, Obraz,texto,text3,numberfodel);
 
 for(int i=0;i<=text3.size()-1;i++){
 ui->vivod->addItem(text3[i]);
 }
-/*
-for(int i=0;i<=numberfodel.size()-1;i++){
-ui->vivod->addItem(QString::number(numberfodel[i]));
-}*/ //Вывод номеров удаляемых элементов
-/*
-int pos;
-for(int i=0;i<numberfodel.size()-1;i++){
-    pos=numberfodel[i]-i;
-texto.erase(texto.begin()+pos);
-}
-str.clear();
-for (int j = 0; j <= texto.size()-1; ++j) {
-    st=QChar(texto[j]);
-     str =str+ QString::number(j)+st+" ";
-}
-ui->text_conclusion->addItem(str);*/
+
 }
 
 

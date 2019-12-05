@@ -7,6 +7,7 @@ numberobr=newnumber;
 sizeobr=newsizeobr;
 sizetext=newsizetext;
 }
+//Генератор образцов
 QVector<QVector<QChar>> generator :: get_robr()
     {
          GObraz.resize(numberobr);
@@ -28,7 +29,7 @@ QVector<QVector<QChar>> generator :: get_robr()
      }
      return GObraz;
      }
-
+//Генератор текста
 QVector<QChar> generator::getText()
 {
     QVector<QChar> textobr={};

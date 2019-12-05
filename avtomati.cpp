@@ -5,31 +5,30 @@ avtomati::avtomati()
 
 }
 void avtomati::setSizeVec(int size) {
-        perex.resize(size);
-    }
+    perex.resize(size);//Установка длины масива переходов
+}
 void avtomati::setPVec(QVector<QChar> tperex) {
-        //pperex.resize(size);
-        pperex = tperex;
-    }
+    pperex = tperex; //Сохрание входяшей последовательности
+}
 void avtomati::setPer(QVector<int> nper) {
-        perex = nper;
-    }
+    perex = nper; //Запись переходов
+}
 QVector<int> avtomati::getPvec() {
-        return perex;
-    }
+    return perex; // Возврат массива переходов
+}
 QVector<QChar> avtomati::getPPvec() {
-        return pperex;
-    }
+    return pperex; // Возврат входящей последовательности
+}
 
 void avtomati::setnumberobr(int newnumberobraz) {
-        numberobraz = newnumberobraz;
-    }
+    numberobraz = newnumberobraz; //Установка номера образца
+}
 int avtomati::getnumberobr() {
-        return numberobraz;
-    }
+    return numberobraz; //Возврат номера образца
+}
 void avtomati::setfinal(){
-        final=true;
+    final=true; //установка того что состояние является финальным
 }
 bool avtomati::getfinal(){
-    return final;
+return final; //Возврат состояния
 }
