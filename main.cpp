@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
    // generator generator;
 
     QApplication a(argc, argv);
+
     MainWindow w;
     w.show();
     return a.exec();

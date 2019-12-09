@@ -25,6 +25,7 @@ SOURCES += \
     poiskperexod.cpp \
     poiskput.cpp
 
+
 HEADERS += \
     avtomati.h \
     generator.h \

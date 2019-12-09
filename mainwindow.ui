@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>978</width>
+    <width>948</width>
     <height>600</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>520</y>
+      <y>500</y>
       <width>241</width>
       <height>23</height>
      </rect>
@@ -33,7 +33,7 @@
       <x>280</x>
       <y>40</y>
       <width>321</width>
-      <height>401</height>
+      <height>381</height>
      </rect>
     </property>
     <property name="font">
@@ -42,11 +42,6 @@
       <pointsize>10</pointsize>
      </font>
     </property>
-    <item>
-     <property name="text">
-      <string>Новый элемент</string>
-     </property>
-    </item>
    </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
@@ -295,13 +290,39 @@
      </rect>
     </property>
    </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>430</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Текст</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>530</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Сохранить</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>978</width>
+     <width>948</width>
      <height>21</height>
     </rect>
    </property>

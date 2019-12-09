@@ -14,6 +14,10 @@
 #include <algorithm>
 #include <QChar>
 #include <QErrorMessage>
+#include <QFile>
+#include <QFileDialog>
+#include <QTextStream>
+#include <QTextCodec>
 using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -73,7 +77,7 @@ void MainWindow::on_pushButton_clicked()
     ui->text_conclusion->clear();
     QVector<avtomati> avtomvec;
     avtomvec.clear();
-    int r1,r2,r3;
+
     //Инициализация параметров
     r2=ui->lineEdit->text().toInt();
     r1=ui->lineEdit_2->text().toInt();
@@ -219,8 +223,40 @@ for (int j = 0; j <= texto.size()-1; ++j) {
     st=QChar(texto[j]);
      str =str+ QString::number(j)+st+" ";
 }
+ui->text_conclusion->addItem("Подстроки, не совпадающие ни с одним из образцов:");
 ui->text_conclusion->addItem(str);
+
+
+
 }
 
 
 
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QString fileName=QFileDialog::getSaveFileName( 0,"Сохранить файл как","C:\\Users\\User\\Desktop","txt(*.txt)" );
+    QFile file(fileName);
+
+    QTextCodec *codec = QTextCodec::codecForName("UTF8");
+  //  QTextCodec::setCodecForTr(codec);
+  //  QTextCodec::setCodecForCStrings(codec);
+    QTextCodec::setCodecForLocale(codec);
+    QTextStream out(&file);
+
+
+    out.setCodec("UTF-8");
+    out.flush();
+    if (file.open(QIODevice::WriteOnly))
+    {
+       // out<<"Заданные параметры:" << endl;
+    //    out<<"Количество образцов: "<< QString::number(r2) << endl;
+     //   out<<"Длина образцов: "<< QString::number(r1) << endl;
+      //  out<<"Длина текста: "<< QString::number(r3) << endl;
+        for(int i=0;i<ui->vivod->count();i++){
+            out<<ui->vivod->item(i)->text() << endl;
+        }
+
+        file.close();
+    }
+}

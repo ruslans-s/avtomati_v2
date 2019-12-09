@@ -26,10 +26,13 @@ private slots:
 
    // void on_pushButton_2_customContextMenuRequested(const QPoint &pos);
 
+    void on_pushButton_3_clicked();
+
 private:
      QVector<QVector<QChar>> Obraz;
       QVector<QChar> alph = {'s','a','d','i','k','o','v','r'};
     Ui::MainWindow *ui;
     QStandardItemModel* model;
+     int r1,r2,r3;
 };
 #endif // MAINWINDOW_H
