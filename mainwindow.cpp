@@ -74,7 +74,7 @@ void MainWindow::on_pushButton_clicked()
 {
 
     ui->vivod->clear();
-    ui->text_conclusion->clear();
+    //ui->text_conclusion->clear();
     QVector<avtomati> avtomvec;
     avtomvec.clear();
 
@@ -117,7 +117,7 @@ if(ui->radioButton->isChecked()) texto=texForSave;
     for(int i = 0; i <= r1-1;i++) {
         str = str+Obraz[j][i];
     }
-     ui->vivod->addItem(str);
+     ui->vivod->addItem('P'+QString::number(j)+'='+str);
      str=str2;
     }
     QVector<QChar> tvec={};
@@ -198,11 +198,11 @@ for(int row=0;row<model->rowCount();row++){
 }
 str.clear();
 
-        for (int j = 0; j <= texto.size()-1; ++j) {
-            st=QChar(texto[j]);
-             str =str+ QString::number(j)+st+" ";
-        }
-        ui->text_conclusion->addItem(str);
+//        for (int j = 0; j <= texto.size()-1; ++j) {
+//            st=QChar(texto[j]);
+//             str =str+ QString::number(j)+st+" ";
+//        }
+//        ui->text_conclusion->addItem(str);
 
 
 QVector<QString> text3={};
@@ -210,26 +210,70 @@ QVector<int> numberfodel;
 
 metod_tabl_per(alph, avtomvec, Obraz,texto,text3,numberfodel);//Применение текста к автомату
 
+
+//QModelIndex indexX;
+model = new QStandardItemModel(1,texto.size(),this);
+ui->textOutput->setModel(model);
+    //model->setHeaderData(0,Qt::Horizontal,"P");
+    for(int i=0;i<=texto.size();i++){
+ model->setHeaderData(i,Qt::Horizontal, QString::number(i+1));
+    }
+   // for(int i=0;i<model->rowCount();i++){
+// model->setHeaderData(0,Qt::Vertical, "Номер символа");
+ model->setHeaderData(0,Qt::Vertical, "Исходный текст");
+
+//for(int row=0;row<model->rowCount();row++){
+//     tvec = avtomvec[row].getPPvec();
+//    for (int j = 0; j <= tvec.size()-1; ++j) {
+
+//         str = str+tvec[j];
+
+//    }
+//    index=model->index(0,col);
+//     model->setData(index, str);
+   str.clear();
+
+   // itvec = {};
+
+    //itvec = avtomvec[row].getPvec();
+
+     for(int col=0;col<model->columnCount();col++) {
+
+
+       index=model->index(0,col);
+        model->setData(index, texto[col]);
+
+
+    }
+
+
+
+//}
+str.clear();
+
+
 for(int i=0;i<=text3.size()-1;i++){
 ui->vivod->addItem(text3[i]);
 }
-int pos;
-for(int i=0;i<numberfodel.size()-1;i++){
-    pos=numberfodel[i]-i;
-texto.erase(texto.begin()+pos);
-}
+
+//Вывод подстрок не совпадаюших ни с одним образцом
+ui->vivod->addItem("Подстроки, не совпадающие ни с одним из образцов:");
 str.clear();
-for (int j = 0; j <= texto.size()-1; ++j) {
-    st=QChar(texto[j]);
-     str =str+ QString::number(j)+st+" ";
+int pos=0;
+int rfi8=0;
+while(rfi8<=texto.size()){
+    if(numberfodel[pos]!=rfi8 && rfi8!=texto.size()){
+    str+=texto[rfi8];
+    rfi8++;
+    }else{
+        ui->vivod->addItem(str);
+        str.clear();
+        rfi8+=r1;
+        pos++;
+    }
+    if(pos>numberfodel.size()-1) pos=numberfodel.size()-1;
 }
-ui->text_conclusion->addItem("Подстроки, не совпадающие ни с одним из образцов:");
-ui->text_conclusion->addItem(str);
-
-
-
 }
-
 
 
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>948</width>
-    <height>600</height>
+    <width>949</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -169,7 +169,7 @@
       <x>620</x>
       <y>40</y>
       <width>311</width>
-      <height>501</height>
+      <height>381</height>
      </rect>
     </property>
     <property name="font">
@@ -280,29 +280,6 @@
      </layout>
     </widget>
    </widget>
-   <widget class="QListWidget" name="text_conclusion">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>451</y>
-      <width>321</width>
-      <height>91</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>430</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Текст</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
@@ -316,13 +293,29 @@
      <string>Сохранить</string>
     </property>
    </widget>
+   <widget class="QTableView" name="textOutput">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>430</y>
+      <width>651</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>30</number>
+    </attribute>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>39</number>
+    </attribute>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>948</width>
+     <width>949</width>
      <height>21</height>
     </rect>
    </property>

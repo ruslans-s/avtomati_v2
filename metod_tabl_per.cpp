@@ -57,10 +57,10 @@ metod_tabl_per::metod_tabl_per(QVector <QChar> Falphab, QVector <avtomati> Favto
               text0.resize(text0.size()+1);
               text0[text0.size()-1]=text1;
               rf5=i-1-1;
-              for(int rf4=0;rf4<=Fobraz[0].size()-1;rf4++){
+             // for(int rf4=0;rf4<=Fobraz[0].size()-1;rf4++){
                 numberfordel.push_back(rf5);
-                rf5++;
-              }
+             //   rf5++;
+             // }
 
 
 
