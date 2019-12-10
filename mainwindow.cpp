@@ -172,38 +172,19 @@ ui->tabl->setModel(model);
 for(int row=0;row<model->rowCount();row++){
      tvec = avtomvec[row].getPPvec();
     for (int j = 0; j <= tvec.size()-1; ++j) {
-
          str = str+tvec[j];
-
     }
     index=model->index(row,0);
      model->setData(index, str);
     str.clear();
-
     itvec = {};
-
     itvec = avtomvec[row].getPvec();
-
      for(int col=1;col<model->columnCount();col++) {
-
-
        index=model->index(row,col);
         model->setData(index, QString::number(itvec[col-1]));
-
-
     }
-
-
-
 }
 str.clear();
-
-//        for (int j = 0; j <= texto.size()-1; ++j) {
-//            st=QChar(texto[j]);
-//             str =str+ QString::number(j)+st+" ";
-//        }
-//        ui->text_conclusion->addItem(str);
-
 
 QVector<QString> text3={};
 QVector<int> numberfodel;
@@ -211,44 +192,18 @@ QVector<int> numberfodel;
 metod_tabl_per(alph, avtomvec, Obraz,texto,text3,numberfodel);//Применение текста к автомату
 
 
-//QModelIndex indexX;
+
 model = new QStandardItemModel(1,texto.size(),this);
 ui->textOutput->setModel(model);
-    //model->setHeaderData(0,Qt::Horizontal,"P");
     for(int i=0;i<=texto.size();i++){
  model->setHeaderData(i,Qt::Horizontal, QString::number(i+1));
     }
-   // for(int i=0;i<model->rowCount();i++){
-// model->setHeaderData(0,Qt::Vertical, "Номер символа");
  model->setHeaderData(0,Qt::Vertical, "Исходный текст");
-
-//for(int row=0;row<model->rowCount();row++){
-//     tvec = avtomvec[row].getPPvec();
-//    for (int j = 0; j <= tvec.size()-1; ++j) {
-
-//         str = str+tvec[j];
-
-//    }
-//    index=model->index(0,col);
-//     model->setData(index, str);
    str.clear();
-
-   // itvec = {};
-
-    //itvec = avtomvec[row].getPvec();
-
      for(int col=0;col<model->columnCount();col++) {
-
-
        index=model->index(0,col);
         model->setData(index, texto[col]);
-
-
     }
-
-
-
-//}
 str.clear();
 
 
@@ -261,18 +216,39 @@ ui->vivod->addItem("Подстроки, не совпадающие ни с од
 str.clear();
 int pos=0;
 int rfi8=0;
-while(rfi8<=texto.size()){
-    if(numberfodel[pos]!=rfi8 && rfi8!=texto.size()){
-    str+=texto[rfi8];
-    rfi8++;
-    }else{
-        ui->vivod->addItem(str);
-        str.clear();
-        rfi8+=r1;
-        pos++;
-    }
+
+//    if(rfi8!=texto.size() && rfi8!=texto.size()-1){
+//        if(pos>numberfodel.size()) {pos=numberfodel.size()-1;}
+//    if(numberfodel[pos]!=rfi8 ){
+//   str+=texto[rfi8];
+//    rfi8++;
+//    }else{
+//        ui->vivod->addItem(str);
+//        str.clear();
+//        rfi8+=r1;
+//        pos++;
+//    }
+//    if(pos>numberfodel.size()-1) pos=numberfodel.size()-1;
+
+//}
+
+QVector<QString> tempVecStr;
+tempVecStr.resize(1);
+while (rfi8<texto.size()) {
     if(pos>numberfodel.size()-1) pos=numberfodel.size()-1;
+    if(rfi8==numberfodel[pos]){
+        tempVecStr.resize(tempVecStr.size()+1);
+        pos++;
+        rfi8++;
+    } else{
+        tempVecStr[tempVecStr.size()-1]=tempVecStr[tempVecStr.size()-1]+texto[rfi8];
+        rfi8++;
+    }
 }
+for(int i=0;i<=tempVecStr.size()-1;i++){
+    if(tempVecStr[i].count() != 0 ) ui->vivod->addItem(tempVecStr[i]);
+}
+
 }
 
 
