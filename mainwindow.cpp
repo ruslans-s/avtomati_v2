@@ -241,7 +241,7 @@ int rfi8=0;
 //    if(pos>numberfodel.size()-1) pos=numberfodel.size()-1;
 
 //}
-
+//Вывод подстрок текста в которых отсутсвует образцы
 QVector<QString> tempVecStr;
 tempVecStr.resize(1);
 if(numberfodel.count()>0){
@@ -278,14 +278,14 @@ ui->radioButton->setEnabled(true);
 
 void MainWindow::on_pushButton_3_clicked()
 {
-
+    //Вызов окна для задания пути к файлу
     QString fileName=QFileDialog::getSaveFileName( 0,"Сохранить файл как","C:\\Users\\RS\\Desktop","txt(*.txt)" );
     QFile file(fileName);
-     QString str;
+    QString str;
     QModelIndex myIndex;
     QVariant myData;
    //model= new QStandardItemModel(ui->tabl->model()->rowCount(),9,this);
-    QTextStream out(&file);
+    QTextStream out(&file); //Создание потока для ввода текста в файл
     if (file.open(QIODevice::WriteOnly))
     {
         str="Заданные параметры";
@@ -294,14 +294,14 @@ void MainWindow::on_pushButton_3_clicked()
         out<<( str="Длина образцов: ")<< QString::number(r1) << endl;
         out<<( str="Длина текста: ")<< QString::number(r3) << endl;
          out<<( str="Исходный текст: ")<< endl;
-         for(int i=0;i<=texto.size()-1;i++){
+         for(int i=0;i<=texto.size()-1;i++){ // Сохранение исходного текста
              out<<texto[i];
          }
          out<<endl;
         for(int i=0;i<ui->vivod->count();i++){
-            out<<ui->vivod->item(i)->text() << endl;
+            out<<ui->vivod->item(i)->text() << endl; //Сохранение информаций из окна вывода
         }
-         out<<( str=" Таблица переходов: ")<<  endl;
+         out<<( str=" Таблица переходов: ")<<  endl; //Сохарение табилицы
           out<<( str="P s a d i k o v r")<<  endl;
         for(int i=0;i<=(ui->tabl->model()->rowCount());i++){
             for(int j=0;j<=(ui->tabl->model()->columnCount());j++){
