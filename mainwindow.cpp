@@ -24,8 +24,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
 
-    ui->setupUi(this);
 
+    ui->setupUi(this);
+ setWindowTitle("Конечный Автомат");
 }
 
 MainWindow::~MainWindow()
@@ -269,7 +270,8 @@ for(int i=0;i<=tempVecStr.size()-1;i++){
     }
     ui->vivod->addItem(str);
 }
-
+ui->pushButton_3->setEnabled(true);
+ui->radioButton->setEnabled(true);
 }
 
 
