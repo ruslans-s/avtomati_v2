@@ -51,18 +51,27 @@ void MainWindow::on_pushButton_2_clicked()
 {
  QString temptext;
  QVector<QChar> tempvecchar;
+ bool found=false;
  temptext=ui->lineEdit_5->text();
  for(int i=0;i<=temptext.size()-1;i++){
-     if (std::find(std::begin(alph), std::end(alph), temptext[i]) != std::end(alph)){
-       tempvecchar.push_back(temptext[i]);
+
+      if (std::find(std::begin(alph), std::end(alph), temptext[i]) != std::end(alph)){
+    // if(found==true){
+     tempvecchar.resize(tempvecchar.size()+1);
+     tempvecchar[tempvecchar.size()-1]=(temptext[i]);
      }else{
 (new QErrorMessage(this))->showMessage("В образце есть недопустимые символы");
          return ;
  }
-    tempvecchar.push_back(temptext[i]);
+    //tempvecchar.push_back(temptext[i]);
  }
  Obraz.push_back(tempvecchar);
  ui->lineEdit_5->clear();
+ QString tempString;
+ for(int i=0;i<=tempvecchar.size()-1;i++){
+    tempString+=tempvecchar[i];
+ }
+ ui->vivod->addItem(tempString);
 }
 
 
@@ -234,8 +243,13 @@ int rfi8=0;
 
 QVector<QString> tempVecStr;
 tempVecStr.resize(1);
+if(numberfodel.count()>0){
 while (rfi8<texto.size()) {
-    if(pos>numberfodel.size()-1) pos=numberfodel.size()-1;
+     if(pos>numberfodel.size()-1 && numberfodel.count()==0) {
+         pos=0;
+        }else if(pos>numberfodel.size()-1) pos=numberfodel.size()-1;
+
+
     if(rfi8==numberfodel[pos]){
         tempVecStr.resize(tempVecStr.size()+1);
         pos++;
@@ -247,6 +261,13 @@ while (rfi8<texto.size()) {
 }
 for(int i=0;i<=tempVecStr.size()-1;i++){
     if(tempVecStr[i].count() != 0 ) ui->vivod->addItem(tempVecStr[i]);
+}
+} else {
+    str.clear();
+    for(int i=0;i<=texto.size()-1;i++){
+        str+=texto[i];
+    }
+    ui->vivod->addItem(str);
 }
 
 }
