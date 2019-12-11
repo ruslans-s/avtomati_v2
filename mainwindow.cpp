@@ -91,7 +91,7 @@ void MainWindow::on_pushButton_clicked()
     r2=ui->lineEdit->text().toInt();
     r1=ui->lineEdit_2->text().toInt();
     r3=ui->lineEdit_3->text().toInt();
-    QVector<QChar> texto ;
+
       QVector<QChar> texForSave ;
     generator generator(alph,r2,r1,r3);
 
@@ -276,28 +276,46 @@ for(int i=0;i<=tempVecStr.size()-1;i++){
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    QString fileName=QFileDialog::getSaveFileName( 0,"Сохранить файл как","C:\\Users\\User\\Desktop","txt(*.txt)" );
+
+    QString fileName=QFileDialog::getSaveFileName( 0,"Сохранить файл как","C:\\Users\\RS\\Desktop","txt(*.txt)" );
     QFile file(fileName);
-
-    QTextCodec *codec = QTextCodec::codecForName("UTF8");
-  //  QTextCodec::setCodecForTr(codec);
-  //  QTextCodec::setCodecForCStrings(codec);
-    QTextCodec::setCodecForLocale(codec);
+     QString str;
+    QModelIndex myIndex;
+    QVariant myData;
+   //model= new QStandardItemModel(ui->tabl->model()->rowCount(),9,this);
     QTextStream out(&file);
-
-
-    out.setCodec("UTF-8");
-    out.flush();
     if (file.open(QIODevice::WriteOnly))
     {
-       // out<<"Заданные параметры:" << endl;
-    //    out<<"Количество образцов: "<< QString::number(r2) << endl;
-     //   out<<"Длина образцов: "<< QString::number(r1) << endl;
-      //  out<<"Длина текста: "<< QString::number(r3) << endl;
+        str="Заданные параметры";
+        out<< str << endl;
+        out<<( str="Количество образцов: ")<< QString::number(r2) << endl;
+        out<<( str="Длина образцов: ")<< QString::number(r1) << endl;
+        out<<( str="Длина текста: ")<< QString::number(r3) << endl;
+         out<<( str="Исходный текст: ")<< endl;
+         for(int i=0;i<=texto.size()-1;i++){
+             out<<texto[i];
+         }
+         out<<endl;
         for(int i=0;i<ui->vivod->count();i++){
             out<<ui->vivod->item(i)->text() << endl;
+        }
+         out<<( str=" Таблица переходов: ")<<  endl;
+          out<<( str="P s a d i k o v r")<<  endl;
+        for(int i=0;i<=(ui->tabl->model()->rowCount());i++){
+            for(int j=0;j<=(ui->tabl->model()->columnCount());j++){
+                myIndex = ui->tabl->model()->index( i, j, QModelIndex()); // row, column это интересующая вас ячейка
+                myData = ui->tabl->model()->data( myIndex, Qt::DisplayRole); // role это интересующая вас роль, например Qt::DisplayRole
+                out << myData.toString() << ' ';
+            }
+            out << endl;
         }
 
         file.close();
     }
+}
+
+void MainWindow::on_readySample_pressed()
+{
+    Obraz.clear();
+   // ui->vivod->addItem("pressed");
 }
